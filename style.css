@@ -1,0 +1,39 @@
+body {
+  background-image: url(https://marketplace.canva.com/EAGVI0bTFss/1/0/1131w/canva-cream-and-pink-minimalist-aesthetic-background-document-a4-kspvLvbS_mA.jpg);
+  margin: 0px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.container {
+  background-color: rgb(255, 255, 255);
+  height: 100vh;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.task-area {
+  border: 1px solid black;
+}
+.task-tabs {
+  position: relative;
+  display: flex;
+  border-bottom: 1px solid black;
+}
+.task-tabs div {
+  padding: 1em;
+}
+#under-line {
+  height: 4px;
+  background-color: blueviolet;
+  position: absolute;
+  width: 80px;
+  left: 0px;
+  top: 52px;
+  padding: 0;
+}
+
+.task {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+}
