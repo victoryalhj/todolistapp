@@ -63,7 +63,7 @@ function render() {
 function toggleComplete(id) {
   console.log("id", id);
   for (let i = 0; i < taskList.length; i++) {
-    if ((taskList[i].id = id)) {
+    if ((taskList[i].id == id)) {
       taskList[i].isComplete = !taskList[i].isComplete;
       break;
     }
