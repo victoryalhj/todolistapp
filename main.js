@@ -49,6 +49,8 @@ function addTask() {
   taskList.push(task);
   console.log(taskList);
   render();
+
+  taskInput.value = '';
 }
 
 function render() {
@@ -63,10 +65,11 @@ function render() {
 
   let resultHTML = "";
   for (let i = 0; i < list.length; i++) {
+      
     if (list[i].isComplete == true) {
       resultHTML += `<div class="task">
           <div class="task-done">${list[i].taskContents}</div>
-          <div>
+          <div class="button-area">
             <button onclick="toggleComplete('${list[i].id}')">
               <i class="fa-solid fa-rotate-left"></i>
             </button>

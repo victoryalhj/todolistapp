@@ -6,10 +6,33 @@ body {
 }
 .container {
   background-color: rgb(255, 255, 255);
-  height: 100vh;
+  height: 800px;
   margin-top: 20px;
   margin-bottom: 20px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+h1{
+  font-weight: 900;
+  padding: 5px;
+}
+.input-area {
+  margin: 5px 0;
+}
+#task-input {
+  background-color: #fdedd8;
+}
+button {
+  border: none;
+  font-weight: 600;
+  background-color: #fdedd8;
+  margin: 2px;
+}
+.button-area {
+  margin-left: 5px;
+}
+.task {
+  height: 2rem;
+  align-items: center;
 }
 .task-area {
   border: 1px solid black;
@@ -19,10 +42,13 @@ body {
   display: flex;
   border-bottom: 1px solid black;
   cursor: pointer;
+  font-weight: 700;
 }
 .task-tabs div {
   padding: 1em;
 }
+
+
 #under-line {
   height: 4px;
   background-color: blueviolet;
@@ -36,15 +62,46 @@ body {
 .task {
   display: flex;
   justify-content: space-between;
-  margin: 3px 0 1px 3px;
+  flex-wrap: nowrap;
+  padding-left: 10px;
+}
+.task div:first-child {
+  flex: 1;
+  min-width: 0;
+  margin-right: 10px;
 }
 .task-done {
+  display: flex;
+  align-items: center;
   background-color: #4a4949;
   text-decoration: line-through;
   color: aliceblue;
-  width: 90%;
+  width: 100%;
+  height: 100%;
+  padding-left: 0
+}
+.task.completed {
+  background-color: #4a4949;
+  color: aliceblue;
+  text-decoration: line-through;
 }
 
+
 @media (max-width: 400px) {
+  body {
+  background-image: url(https://marketplace.canva.com/EAGVI0bTFss/1/0/1131w/canva-cream-and-pink-minimalist-aesthetic-background-document-a4-kspvLvbS_mA.jpg);
+  margin: 0px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+.container {
+  background-color: rgb(255, 255, 255);
+  height: 600px;
+  width: 90%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
 
 }
