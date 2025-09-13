@@ -13,9 +13,28 @@
 
 let taskInput = document.getElementById("task-input");
 let addButton = document.getElementById("add-button");
+let tabs = document.querySelectorAll(".task-tabs div")
 let taskList = [];
+let mode ='all'
+let filterList = []
+let underline = document.getElementById('under-line')
+
+for(let i=1; i<tabs.length; i++){
+  tabs[i].addEventListener('click',function(event) {
+    filter(event)
+  })
+}
+console.log(tabs)
 
 addButton.addEventListener("click", addTask);
+taskInput.addEventListener('focus',function(){
+  taskInput.value=''
+})
+taskInput.addEventListener('keyup',function(event){
+  if(event.key === 'Enter') {
+    addTask()
+  }
+})
 
 function addTask() {
   let task = {
@@ -23,34 +42,47 @@ function addTask() {
     taskContents: taskInput.value,
     isComplete: false,
   };
+  if(task.taskContents === ''){
+    return
+  }
+
   taskList.push(task);
   console.log(taskList);
   render();
 }
 
 function render() {
+  let list = []
+  if(mode === 'all'){
+    list = taskList;
+  }else if(mode === 'ongoing'){
+    list = filterList;
+  }else if(mode === 'done'){
+    list = filterList
+  }
+
   let resultHTML = "";
-  for (let i = 0; i < taskList.length; i++) {
-    if (taskList[i].isComplete == true) {
+  for (let i = 0; i < list.length; i++) {
+    if (list[i].isComplete == true) {
       resultHTML += `<div class="task">
-          <div class="task-done">${taskList[i].taskContents}</div>
+          <div class="task-done">${list[i].taskContents}</div>
           <div>
-            <button onclick="toggleComplete('${taskList[i].id}')">
+            <button onclick="toggleComplete('${list[i].id}')">
               <i class="fa-solid fa-rotate-left"></i>
             </button>
-            <button onclick="deleteTask('${taskList[i].id}')">
+            <button onclick="deleteTask('${list[i].id}')">
               <i class="fa-solid fa-trash"></i>
             </button>
           </div>
         </div>`;
     } else {
       resultHTML += ` <div class="task">
-        <div>${taskList[i].taskContents}</div>
+        <div>${list[i].taskContents}</div>
         <div>
-        <button onclick="toggleComplete('${taskList[i].id}')">
+        <button onclick="toggleComplete('${list[i].id}')">
             <i class="fa-solid fa-check"></i>
         </button>
-        <button onclick="deleteTask('${taskList[i].id}')">
+        <button onclick="deleteTask('${list[i].id}')">
             <i class="fa-solid fa-trash"></i>
         </button>
          </div>
@@ -68,19 +100,41 @@ function toggleComplete(id) {
       break;
     }
   }
-  render()
+  filter({target:{id:mode}})
   console.log(taskList);
 }
 
 function deleteTask(id) {
-  for(let i=0; i<taskList.length; i++){
-    if(taskList[i].id == id){
-      taskList.splice(i,1)
-      break;
+  taskList = taskList.filter(task => task.id !== id);
+  filter({target:{id:mode}})
+}
+
+function filter (event){
+  console.log('filter',event.target.id)
+
+  underline.style.left = event.target.offsetLeft + 'px';
+  underline.style.width = event.target.offsetWidth + 'px';
+  
+  mode = event.target.id
+  filterList = []
+  if(mode === 'all') {
+    render()
+  }else if(mode === 'ongoing') {
+    for(let i=0; i<taskList.length; i++) {
+      if(taskList[i].isComplete === false) {
+        filterList.push(taskList[i])
+      }
     }
+    render()
+    console.log('진행중',filterList)
+  }else if(mode === 'done'){
+    for(let i=0; i<taskList.length; i++) {
+      if(taskList[i].isComplete === true){
+        filterList.push(taskList[i])
+      }
+    }
+    render()
   }
-  render()
-  console.log(taskList)
 }
 
 function randomIDGenerate() {
