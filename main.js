@@ -48,7 +48,8 @@ function addTask() {
 
   taskList.push(task);
   console.log(taskList);
-  render();
+
+  filter({target:{id:mode}})
 
   taskInput.value = '';
 }
